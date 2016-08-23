@@ -10,6 +10,8 @@ function StopWatch() {
     } else if (startTime !== null) {
       stopTime = null;
     }
+    running = true;
+    startTime = getTime();
   };
 
   this.stop = function() {
@@ -24,10 +26,12 @@ function StopWatch() {
     if (startTime === null || stopTime === null) {
       return undefined;
     } else {
+      // console.log((stopTime - startTime) / 1000);
       return (stopTime - startTime) / 1000;
     }
   };
 }
+
 
 function getTime() {
   var date =  new Date();
@@ -35,4 +39,13 @@ function getTime() {
 }
 
 var stopwatch = new StopWatch();
-console.log(stopwatch);
+
+function runStopWatch() {
+  stopwatch.start();
+
+  setTimeout(function() {
+      stopwatch.stop();
+      console.log(stopwatch.duration());
+  }, 3000);
+}
+runStopWatch();
