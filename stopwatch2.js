@@ -3,6 +3,7 @@ function StopWatch() {
   var startTime = null;
   var stopTime = null;
   var running = false;
+  var times = [0, 0, 0];
 
   this.start = function() {
     if (running === true) {
