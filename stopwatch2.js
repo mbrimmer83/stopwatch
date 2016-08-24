@@ -31,6 +31,26 @@ function StopWatch() {
       return (stopTime - startTime) / 1000;
     }
   };
+
+  this.calculate = function(startTime) {
+    var timestamp = getTime();
+    var diff = timestamp - startTime;
+    times[2] += diff / 10;
+        // Seconds are 100 hundredths of a second
+        if (times[2] >= 100) {
+            times[1] += 1;
+            times[2] -= 100;
+        }
+        // Minutes are 60 seconds
+        if (times[1] >= 60) {
+            times[0] += 1;
+            times[1] -= 60;
+        }
+        if (running === true) {
+          stopwatch.calculate();
+          console.log(times);
+        }
+  };
 }
 
 
@@ -43,6 +63,7 @@ var stopwatch = new StopWatch();
 
 function runStopWatch() {
   stopwatch.start();
+  stopwatch.calculate();
 
   setTimeout(function() {
       stopwatch.stop();
